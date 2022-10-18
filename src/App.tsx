@@ -93,7 +93,7 @@ function App() {
           <option value="bottom-right">Bottom-Right</option>
         </select>
       </div>
-      <Toast position={position} autoDeleteInterval={4000} />
+      <Toast position={position} autoDeleteInterval={5000} />
     </div>
   )
 }

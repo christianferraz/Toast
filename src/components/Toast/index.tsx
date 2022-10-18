@@ -1,10 +1,4 @@
-import React, {
-  forwardRef,
-  useContext,
-  ForwardRefRenderFunction,
-  useImperativeHandle,
-  useCallback,
-} from 'react'
+import { useContext } from 'react'
 import { IState, ToastContext } from '../../context/ToastContext'
 import {
   FaCheck,
