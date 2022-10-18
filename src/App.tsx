@@ -1,12 +1,18 @@
-import { useContext, useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
-import { ToastContext } from './context/ToastContext'
+import { ToastContext, useToast } from './context/ToastContext'
 import { v4 as uuidv4 } from 'uuid'
 import Toast from './components/Toast'
 
+interface IPosition {
+  position: 'bottom-left' | 'top-right' | 'bottom-right' | 'top-left'
+}
+
 function App() {
-  const [position, setPosition] = useState('top-left')
-  const { state, dispatch } = useContext(ToastContext)
+  const [position, setPosition] = useState<
+    'bottom-left' | 'top-right' | 'bottom-right' | 'top-left'
+  >('top-left')
+  const { dispatch } = useToast()
   const handleButtonSelect = (type: string) => {
     switch (type) {
       case 'SUCCESS':
@@ -81,7 +87,15 @@ function App() {
           DANGER
         </button>
         <select
-          onChange={e => setPosition(e.target.value)}
+          onChange={e =>
+            setPosition(
+              e.target.value as
+                | 'bottom-left'
+                | 'top-right'
+                | 'bottom-right'
+                | 'top-left',
+            )
+          }
           value={position}
           name=""
           id=""
@@ -93,7 +107,7 @@ function App() {
           <option value="bottom-right">Bottom-Right</option>
         </select>
       </div>
-      <Toast position={position} autoDeleteInterval={4000} />
+      <Toast position={position} />
     </div>
   )
 }

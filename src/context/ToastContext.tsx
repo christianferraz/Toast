@@ -1,4 +1,4 @@
-import React, { createContext, Dispatch, useReducer } from 'react'
+import React, { createContext, Dispatch, useContext, useReducer } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 
 interface IToastContextProvider {
@@ -10,6 +10,7 @@ export interface IState {
   type?: 'SUCCESS' | 'INFO' | 'WARNING' | 'DANGER'
   title?: string
   message?: string
+  autoCloseInterval?: number
 }
 
 interface IAction {
@@ -75,4 +76,8 @@ export const ToastContextProvider = (props: IToastContextProvider) => {
       {props.children}
     </ToastContext.Provider>
   )
+}
+
+export function useToast() {
+  return useContext(ToastContext)
 }
